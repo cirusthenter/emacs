@@ -12,3 +12,7 @@ After emacs is installed, `~/.emacs.d` directory is automatically created. Creat
 ```
 % emacs ~/.emacs.d/init.el
 ```
+
+Copy the `init.el` file in this git repository to your own `/.emacs.d/init.el`. The current version of `/.emacs.d/init.el` of mine is:
+
+
