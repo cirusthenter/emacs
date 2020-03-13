@@ -32,29 +32,29 @@ M-x package-install RET auto-complete RET
 ### undohist
 
 ```
-M-x package install RET undohist RET
+M-x package-install RET undohist RET
 ```
 
 ### undo-tree
 
 ```
-M-x package install RET undo-tree RET
+M-x package-install RET undo-tree RET
 ```
 
 ### Flycheck
 
 ```
-M-x package install RET flycheck RET
+M-x package-install RET flycheck RET
 ```
 
 ### Flycheck error position tip
 
 ```
-M-x package install RET flycheck-pos-tip RET
+M-x package-install RET flycheck-pos-tip RET
 ```
 
 ### hungry-delete
 
 ```
-M-x package install RET hungry-delete RET
+M-x package-install RET hungry-delete RET
 ```
