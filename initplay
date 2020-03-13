@@ -8,7 +8,6 @@
 
 ;; set a tab to 4 spaces
 (setq-default tab-width 4)
-(setq-default indent-tabs-mode t)
 
 ;; show line number
 (global-linum-mode t)
@@ -108,8 +107,6 @@
 
 
 ; ADDED ON Mar 13, 2020
-;; theme: wombat
-(load-theme 'wombat t)
 
 ;; Activte package.el
 (require 'package)
@@ -121,6 +118,9 @@
  'package-archives
  '("melpa" . "https://melpa.org/packages/"))
  (package-initialize) ; load installed Elisp
+
+;; theme: zenburn-theme
+(load-theme 'zenburn t)
 
 ;; Helm
 (require 'helm-config)
@@ -144,14 +144,3 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (with-eval-after-load 'flycheck
   (flycheck-pos-tip-mode))
-
-;; set te c-mode indent style to bsd, but the indent offset to 4
-;; show if the end of the line has an unnecessary space or tab
-(add-hook 'c-mode-common-hook
-		  (lambda ()
-			(c-set-style "bsd")
-			(setq c-basic-offset 4)
-			(setq show-trailing-whitespace t)))
-
-(require 'hungry-delete)
-(global-hungry-delete-mode)
