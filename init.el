@@ -1,40 +1,13 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (wombat)))
  '(package-selected-packages
    (quote
     (mew flycheck web-mode helm undo-tree undohist color-moccur auto-complete))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(custom-set-faces)
 
 (set-default-font "Menlo 15")
-
-;; 起動時のサイズ,表示
-(setq default-frame-alist
- (append (list
-  '(foreground-color . "white") ;文字色：白
-  '(background-color . "black") ;背景色：黒
-  '(top . 0) ;ウィンドウの表示位置(Y座標)
-  '(left . 730) ;ウィンドウの表示位置(X座標）
-  '(width . (text-pixels . 680)) ;ウィンドウ幅
-  '(height . (text-pixels . 750)) ;ウィンドウ高
-  )
- default-frame-alist)
- )
 
 ;;; package.el
 (require 'package)
@@ -50,50 +23,33 @@
 (package-initialize)
 
 
-;; スタートアップメッセージを表示させない
+;; do not show the start up message
 (setq inhibit-startup-message t)
 
-;; タブ文字1つあたりのスペースの数
+;; set a tab to 4 spaces
 (setq default-tab-width 4)
 
-;;c-modeでタブ文字を入力するときの移動量
-(add-hook `c-mode-common-hook
- (lambda() (progn (setq c-basic-offset 4))))
-
-;; 行数を表示する
+;; show line number
 (global-linum-mode t)
 
-;;カラム番号も表示する
-(column-number-mode t)
-
-;; 対応する括弧を光らせる
+;; show the corresponding brace 
 (show-paren-mode 1)
 
-;; C-kでカーソルから先の行全体を削除する
-(setq kill-whole-line t)
-
-;; スクロールは1行ごとに
+;; set scroll amount when using a mouse
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 5)))
 
-;; スクロールの加速をやめる
+;; don't let the cursor have acceleration
 (setq mouse-wheel-progressive-speed nil)
-
-;; bufferの最後でカーソルを動かそうとしても音をならなくする
-(defun next-line (arg)
-  (interactive "p")
-  (condition-case nil
-      (line-move arg)
-    (end-of-buffer)))
 
 ;; エラー音をならなくする
 (setq ring-bell-function 'ignore)
 
-;;現在行のハイライト
+;; highlighting the current line
 (defface my-hl-line-face
-  ;;背景がdarkならば背景色を紺に
+  ;; set it to navyblue when if the default background color is dark
   '((((class color) (background dark))
      (:background "NavyBlue" t))
-    ;;背景がlightならば背景色を青に
+    ;; set it to LightSkyBlue if the default background color is light
     (((class color) (background light))
      (:background "LightSkyBlue" t))
     (t (:bold t)))
@@ -101,62 +57,65 @@
 (setq hl-line-face 'my-hl-line-face)
 (global-hl-line-mode t)
 
-;;auto insert ) or }
+;; auto insert ) or }
 (electric-pair-mode 1)
 
-;;Alias of replace-string
+;; Alias of replace-string
 (defalias 'rs 'replace-string)
-;;Alias of query-replace
+;;A lias of query-replace
 (defalias 'qr 'query-replace)
-;;Alias of M-x align
+;; Alias of M-x align
 (defalias 'a 'align)
-;;Alias of goto-line
+;; Alias of goto-line
 (defalias 'gl 'goto-line)
 
-;;; C系統,Pythonにて1行80文字を超えるとハイライト
+;;; Highlight if one line has over 80 chars in C, Python
+;; C
 (add-hook 'c-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
 '(("^[^\n]\\{80\\}\\(.*\\)$" 1
   '((((class color) (background dark))
      (:background "Gray" t))
-    ;;背景がlightならば背景色を青に
+    ;; set it to LightSkyBlue if the default background color is light
     (((class color) (background light))
      (:background "LightSkyBlue" t))
     (t (:bold t))))))))
+;; C++
 (add-hook 'c++-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
 '(("^[^\n]\\{80\\}\\(.*\\)$" 1
   '((((class color) (background dark))
      (:background "Gray" t))
-    ;;背景がlightならば背景色を青に
+    ;; set it to LightSkyBlue if the default background color is light
     (((class color) (background light))
      (:background "LightSkyBlue" t))
     (t (:bold t))))))))
+;; Python
 (add-hook 'python-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
 '(("^[^\n]\\{80\\}\\(.*\\)$" 1
   '((((class color) (background dark))
      (:background "Gray" t))
-    ;;背景がlightならば背景色を青に
+    ;; set it to LightSkyBlue if the default background color is light
     (((class color) (background light))
      (:background "LightSkyBlue" t))
     (t (:bold t))))))))
 
-;;; Javaで1行100文字を超えるとハイライト
+;;; Highlight if one line has over 80 chars in Java
 (add-hook 'java-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
       '(("^[^\n]\\{100\\}\\(.*\\)$" 1  '((((class color) (background dark))
      (:background "Gray" t))
-    ;;背景がlightならば背景色を青に
+    ;; set it to LightSkyBlue if the default background color is light
     (((class color) (background light))
      (:background "LightSkyBlue" t))
     (t (:bold t))))))))
 
-;;setting about auto-complete added by Cirus on Oct 5, 2019
+;; setting about auto-complete
 (when (require 'auto-complete-config nil t)
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
   (ac-config-default)
@@ -164,7 +123,7 @@
   (setq ac-ignore-case nil)
   )
 
-;;setting about color-moccur added by Cirus on Oct 5, 2019
+;; setting about color-moccur 
 (when (require 'color-moccur nil t)
   (define-key global-map (kbd "M-o") 'occur-by-moccur)
   (setq moccur-split-word t)
@@ -172,32 +131,32 @@
   (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
   )
 
-;;setting about undohist added by Cirus on Oct 5, 2019
+;; setting about undohist
 (when (require 'undohist nil t)
   (undohist-initialize))
 
-;;setting about undo-tree added by Cirus on Oct 5, 2019
+;; setting about undo-tree
 (when (require 'undo-tree nil t)
   (define-key global-map (kbd "C-'") 'undo-tree-redo)
   (global-undo-tree-mode)
   )
 
-;;setting about helm added by Cirus on Oct 5, 2019
+;; setting about helm
 (require 'helm-config)
 
-;;setting about point-undo added by Cirus on Oct 5, 2019
+;; setting about point-undo
 (when (require 'point-undo nil t)
   (define-key global-map (kbd "M-[") 'point-undo)
   (define-key global-map (kbd "M-]") 'point-redo)
   )
 
-;;setting about cua-mode (not a package) added by Cirus on Oct 5, 2019
+;; setting about cua-mode (not a package)
 ;;M-o: add a space after the selected character
 ;;M-n: replace the character with sequence numbers
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
-;;setting about web-mode added by Cirus on Oct 5, 2019
+;; setting about web-mode
 ;;add extensions that web-mode is automatically applied to
 (add-to-list 'auto-mode-alist '("\\.html     	 \\'" . web-mode ))
 (add-to-list 'auto-mode-alist '("\\.css      	 \\'" . web-mode ))
@@ -219,8 +178,8 @@
   (setq web-mode-script-padding 1      );indent start level in <script>
   )
 
-;;syntax check for python
+;; syntax check for python
 (setq python-check-command "flake8")
 
-;;flycheck (syntax check service)
+;; flycheck (syntax check service)
 (add-hook 'after-init-hook #'global-flycheck-mode)
