@@ -1,3 +1,15 @@
+;; Most important package
+;; Activate package.el
+(require 'package)
+;; Add Marmalade and MELPA to the package repository
+(add-to-list 
+ 'package-archives
+ '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list
+ 'package-archives
+ '("melpa" . "https://melpa.org/packages/"))
+ (package-initialize) ; load installed Elisp
+
 ; ADDED BEFORE Mar 13, 2020
 
 ;; set font
@@ -79,7 +91,7 @@
      (:background "LightSkyBlue" t))
     (t (:bold t))))))))
 
-;;; Highlight if one line has over 80 chars in Java
+;;; Highlight if one line has over 100 chars in Java
 (add-hook 'java-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
@@ -98,6 +110,7 @@
   (setq ac-ignore-case nil)
   )
 
+
 ;; setting about color-moccur 
 (when (require 'color-moccur nil t)
   (define-key global-map (kbd "M-o") 'occur-by-moccur)
@@ -110,17 +123,6 @@
 ; ADDED ON Mar 13, 2020
 ;; theme: wombat
 (load-theme 'wombat t)
-
-;; Activte package.el
-(require 'package)
-;; Add Marmalade and MELPA to the package repository
-(add-to-list 
- 'package-archives
- '("marmalade" . "https://marmalade-repo.org/packages/"))
-(add-to-list
- 'package-archives
- '("melpa" . "https://melpa.org/packages/"))
- (package-initialize) ; load installed Elisp
 
 ;; Helm
 (require 'helm-config)
