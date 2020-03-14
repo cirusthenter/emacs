@@ -124,6 +124,9 @@
 ;; theme: wombat
 (load-theme 'wombat t)
 
+;; show column number
+(column-number-mode t)
+
 ;; Helm
 (require 'helm-config)
 
@@ -137,7 +140,7 @@
 
 ;; cua-mode: Common User Access
 (cua-mode t)
-; (setq cua-enable-cua-keys nil) 
+(setq cua-enable-cua-keys nil) 
 
 ;; python check
 (setq python-check-command "flake8")
