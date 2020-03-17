@@ -16,6 +16,13 @@ After emacs is installed, `~/.emacs.d` directory is automatically created. Make 
 Copy the `init.el` file in this git repository to your own `/.emacs.d/init.el`.
 
 ## Packages
+### Connect to the package-archives
+This step is not need for most of you, but it was for me. Try this if you fail to run the following package-install commands. Just in case.
+
+```
+M-x list-packages
+```
+
 ### Helm
 You should install this interface before anything other.
 
