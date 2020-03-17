@@ -22,6 +22,7 @@ This step is not need for most of you, but it was for me. Try this if you fail t
 ```
 M-x list-packages
 ```
+Choose `Always`.
 
 ### Helm
 You should install this interface before anything other.
