@@ -7,7 +7,7 @@
  '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list
  'package-archives
- '("melpa" . "https://melpa.org/packages/"))
+ '("melpa" . "http://melpa.org/packages/"))
  (package-initialize) ; load installed Elisp
 
 ; ADDED BEFORE Mar 13, 2020
